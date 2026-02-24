@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR"> <!-- Alterado para pt-BR -->
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Guilherme Gomes · Tech Lead & Full Stack</title> <!-- Título mais profissional -->
     <link rel="stylesheet" href="style.css">
     <!----Font awesome cdn  font icon css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
@@ -16,7 +16,7 @@
         <div class="wrapper">
             <header>
                 <div class="logo">
-                    <i class="fa-solid fa-g"></i>
+                    <i class="fa-solid fa-code"></i> <!-- Ícone mais temático -->
                     <div class="logo-text">Guilherme Gomes</div>
                 </div>
                 <nav>
@@ -26,68 +26,114 @@
                         <span></span>
                     </div>
                     <ul class="navlinks">
-                        <li><a href="/">Início</a></li>
+                        <li><a href="#inicio" class="active">Início</a></li> <!-- Adicionada classe active -->
                         <li><a href="./portifolio/index.html">Portfolio</a></li>
                         <li><a href="./resumo/index.html">Resumo</a></li>
+                        <li><a href="#contato">Contato</a></li> <!-- Link fictício para exemplo -->
                     </ul>
                 </nav>
             </header>
-            <div class="container">
-                <div class="hero-pic">
-                    <img src="./images/106400520.jpeg" alt="Perfil Guilherme" width="360" height="520">
-                </div>
-                <div class="hero-text">
-                    <h5>Hi I'm <span class="input">Full Stack Developer</span></h5>
-                    <h1>Guilherme Gomes</h1>
-        
-                    <div class="section">
-                        <p class="section-title">Sobre </p>
-                        <p class="empresa-texto">Sou um profissional apaixonado por tecnologia, com vasta experiência em desenvolvimento de software e interesse especial em inteligência artificial e machine learning. Atualmente, estou focado em expandir meu conhecimento em análise de dados e visualização de dados.</p>
-                    </div>
-                    
-                    <div class="section">
-                        <p class="section-title">Interesses</p>
-                        <p class="empresa-texto">Fora do ambiente de trabalho, sou um entusiasta de viagens e um ávido leitor. Estou sempre em busca de novos desafios e oportunidades para aprender e crescer profissionalmente.</p>
-                    </div>
 
-                    <div class="btn-group">
-                        <a href="pdf/curriculo.pdf" class="btn active" download>Download CV</a>
-                        <a href="./portifolio/index.html" class="btn">Portfolio</a>
+            <main>
+                <section id="inicio" class="container">
+                    <div class="hero-pic">
+                        <img src="./images/guigomes.png" alt="Perfil Guilherme Gomes">
                     </div>
+                    <div class="hero-text">
+                        <h5>Olá, eu sou <span class="input"></span></h5> <!-- Span para o Typed.js -->
+                        <h1>Guilherme Gomes</h1>
 
-                    <div class="social">
-                        <a href="https://www.facebook.com/GuiGomesCK/" target="_blank"><i
-                                class="fa-brands fa-facebook"></i>
-                            <a href="https://www.linkedin.com/in/guilherme-txgomes" target="_blank"><i
-                                    class="fa-brands fa-linkedin"></i></a>
-                            <a href="https://www.instagram.com/gui.goomes_/"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="https://github.com/guilherme-teixeira-gomes"><i
-                                    class="fa-brands fa-github"></i></a>
+                        <!-- Bio mais alinhada com seus novos papéis -->
+                        <p class="bio">
+                            Mais que um desenvolvedor, sou um profissional que une a técnica à gestão.
+                            Como <strong>Tech Lead e Responsável pelo Setor Tecnológico</strong>, lidero times,
+                            arquiteto soluções e entrego valor de negócio através da tecnologia.
+                        </p>
+
+                        <!-- Cards para destacar as áreas de atuação -->
+                        <div class="role-cards">
+                            <div class="role-card">
+                                <i class="fa-solid fa-laptop-code"></i>
+                                <span>Full Stack</span>
+                            </div>
+                            <div class="role-card">
+                                <i class="fa-solid fa-people-group"></i>
+                                <span>Gestão & Liderança</span>
+                            </div>
+                            <div class="role-card">
+                                <i class="fa-solid fa-diagram-project"></i>
+                                <span>Pós em Arquitetura</span>
+                            </div>
+                        </div>
+
+                        <div class="btn-group">
+                            <a href="pdf/curriculo.pdf" class="btn active" download>Download CV</a>
+                            <a href="./portifolio/index.html" class="btn">Ver Portfólio</a>
+                        </div>
+
+                        <div class="social">
+                            <a href="https://www.facebook.com/GuiGomesCK/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="https://www.linkedin.com/in/guilherme-txgomes" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/gui.goomes_/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://github.com/guilherme-teixeira-gomes" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </section>
+
+                <!-- Seção de Destaque: O que eu faço -->
+                <section class="services">
+                    <h2 class="section-title-main">Minha Atuação</h2>
+                    <div class="service-grid">
+                        <div class="service-item">
+                            <i class="fa-solid fa-cubes"></i>
+                            <h3>Arquitetura de Software</h3>
+                            <p>Desenho de sistemas escaláveis, seguros e alinhados com as necessidades do negócio, aplicando os conceitos da minha pós-graduação.</p>
+                        </div>
+                        <div class="service-item">
+                            <i class="fa-solid fa-code"></i>
+                            <h3>Desenvolvimento Fullstack</h3>
+                            <p>Construção de ponta a ponta, do banco de dados à interface do usuário, com as melhores práticas e tecnologias atuais.</p>
+                        </div>
+                        <div class="service-item">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <h3>Liderança Técnica & Gestão</h3>
+                            <p>Gestão de times, definição de rotas tecnológicas, mentoria e garantia da qualidade e da entrega contínua de valor.</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
         </div>
     </div>
-    </div>
+
+    <!-- Rodapé simples -->
+    <footer>
+        <p>© 2024 Guilherme Gomes. Todos os direitos reservados.</p>
+    </footer>
+
     <!---typed js for typing text effect-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
     <script>
-        /** creating button click show hide navbar **/
+        // Menu Toggle para Mobile
         var togglebtn = document.querySelector(".togglebtn");
         var nav = document.querySelector(".navlinks");
-        var links = document.querySelector(".navlinks li");
 
         togglebtn.addEventListener("click", function () {
             this.classList.toggle("click");
             nav.classList.toggle("open");
-        })
+        });
 
+        // Typed.js Effect
         var typed = new Typed(".input", {
-            strings: ["Full Stack Developer", "Project Manager"],
-            typedSpeed: 70,
+            strings: [
+                "Tech Lead", 
+                "Full Stack Developer", 
+                "Arquiteto de Soluções", 
+                "Gestor de TI"
+            ], // Atualizado com seus novos papéis
+            typeSpeed: 70,
             backSpeed: 55,
             loop: true
-        })
+        });
     </script>
 </body>
 
