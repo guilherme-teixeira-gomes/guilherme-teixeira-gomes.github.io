@@ -1,92 +1,328 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Portfolio Website Design</title>
-  <link rel="stylesheet" href="/resumo/style.css">
-  <!----Font awesome cdn  font icon css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo · Guilherme Gomes</title>
+    <link rel="stylesheet" href="/resumo/style.css">
+    <!----Font awesome cdn  font icon css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
-
 <body>
-  <div class="hero-header">
-    <div class="wrapper">
-      <header>
-        <div class="logo">
-          <i class="fa-solid fa-g"></i>
-          <div class="logo-text">Guilherme Gomes</div>
-        </div>
-        <nav>
-          <div class="togglebtn">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <ul class="navlinks">
-            <li><a href="/">Início</a></li>
-            <li><a href="/portifolio/index.html">Portfolio</a></li>
-            <li><a href="/resumo/index.html">Resumo</a></li>
-          </ul>
-        </nav>
-      </header>
-      <div class="container-resumo">
-        <div class="section">
-          <p class="section-title">Especializações</p>
-          <p class="empresa-texto">Sou especializado no desenvolvimento de projetos utilizando <strong>TypeScript</strong> e
-            <strong>Node.js</strong>, além de ter proficiência em bancos de dados como
-            <strong>MySQL</strong>, <strong>MariaDB</strong> e <strong>PostgreSQL</strong>.
-          </p>
-        </div>
+    <div class="hero-header">
+        <div class="wrapper">
+            <header>
+                <div class="logo">
+                    <i class="fa-solid fa-code"></i>
+                    <div class="logo-text">Guilherme Gomes</div>
+                </div>
+                <nav>
+                    <div class="togglebtn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <ul class="navlinks">
+                        <li><a href="/">Início</a></li>
+                        <li><a href="/portifolio/index.html">Portfolio</a></li>
+                        <li><a href="/resumo/index.html" class="active">Resumo</a></li>
+                    </ul>
+                </nav>
+            </header>
 
-        <div class="section">
-          <p class="section-title">Experiência</p>
-          <p class="empresa-texto">Tenho ampla experiência na utilização de Sequelize, ORM e Prisma para gerenciamento e
-            manipulação
-            eficiente de dados. Minha expertise se estende também ao React.js, onde desenvolvo aplicações robustas
-            e escaláveis.</p>
-        </div>
+            <main>
+                <!-- Título da Página -->
+                <div class="page-header">
+                    <h1>Meu <span class="highlight">Resumo</span></h1>
+                    <p>Visão geral da minha trajetória profissional e habilidades</p>
+                </div>
 
-        <div class="section">
-          <p class="section-title">Gestão de Projetos</p>
-          <p class="empresa-texto">Além do desenvolvimento técnico, possuo habilidades em gestão de projetos, garantindo que todas as
-            etapas sejam conduzidas de forma eficiente e alinhadas com os objetivos do negócio.</p>
+                <!-- Grid principal do resumo -->
+                <div class="resumo-grid">
+                    
+                    <!-- COLUNA ESQUERDA: Perfil e Contato -->
+                    <div class="resumo-col-left">
+                        
+                        <!-- Card de Perfil -->
+                        <div class="resumo-card">
+                            <div class="profile-header">
+                                <div class="profile-pic-small">
+                                    <img src="/images/guigomes.png" alt="Guilherme Gomes">
+                                </div>
+                                <div class="profile-title">
+                                    <h2>Guilherme Gomes</h2>
+                                    <p class="profile-role">Tech Lead · Chefe do Setor Tecnológico</p>
+                                </div>
+                            </div>
+                            <p class="profile-bio">
+                                29 anos · São Paulo - SP<br>
+                                Pós-graduando em Arquitetura de Software<br>
+                                Apaixonado por tecnologia, inovação e cidades inteligentes
+                            </p>
+                            
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <span>São Paulo, SP</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <span>guilherme@email.com</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span>(11) 99999-9999</span>
+                                </div>
+                            </div>
+                            
+                            <div class="social-links">
+                                <a href="https://github.com/guilherme-teixeira-gomes" target="_blank"><i class="fa-brands fa-github"></i></a>
+                                <a href="https://www.linkedin.com/in/guilherme-txgomes" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                                <a href="https://instagram.com/gui.goomes_" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        
+                        <!-- Card de Habilidades Técnicas -->
+                        <div class="resumo-card">
+                            <h3 class="card-title">
+                                <i class="fa-solid fa-code"></i>
+                                Habilidades Técnicas
+                            </h3>
+                            
+                            <div class="skills-category">
+                                <h4>Frontend</h4>
+                                <div class="skills-tags">
+                                    <span class="skill-tag">React.js</span>
+                                    <span class="skill-tag">React Native</span>
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">HTML5</span>
+                                    <span class="skill-tag">CSS3</span>
+                                    <span class="skill-tag">Material UI</span>
+                                    <span class="skill-tag">Styled Components</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skills-category">
+                                <h4>Backend</h4>
+                                <div class="skills-tags">
+                                    <span class="skill-tag">Node.js</span>
+                                    <span class="skill-tag">Express</span>
+                                    <span class="skill-tag">PHP</span>
+                                    <span class="skill-tag">CodeIgniter</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">API REST</span>
+                                    <span class="skill-tag">Sequelize</span>
+                                    <span class="skill-tag">Prisma</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skills-category">
+                                <h4>Banco de Dados</h4>
+                                <div class="skills-tags">
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">PostgreSQL</span>
+                                    <span class="skill-tag">MariaDB</span>
+                                    <span class="skill-tag">MongoDB</span>
+                                    <span class="skill-tag">Firebase</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skills-category">
+                                <h4>DevOps & Cloud</h4>
+                                <div class="skills-tags">
+                                    <span class="skill-tag">Docker</span>
+                                    <span class="skill-tag">AWS</span>
+                                    <span class="skill-tag">Git</span>
+                                    <span class="skill-tag">GitHub</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skills-category">
+                                <h4>IoT & Hardware</h4>
+                                <div class="skills-tags">
+                                    <span class="skill-tag">Arduino</span>
+                                    <span class="skill-tag">Raspberry Pi</span>
+                                    <span class="skill-tag">Sensores</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skills-category">
+                                <h4>APIs e Integrações</h4>
+                                <div class="skills-tags">
+                                    <span class="skill-tag">Google Maps</span>
+                                    <span class="skill-tag">Google Places</span>
+                                    <span class="skill-tag">TMDB</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card de Idiomas -->
+                        <div class="resumo-card">
+                            <h3 class="card-title">
+                                <i class="fa-solid fa-language"></i>
+                                Idiomas
+                            </h3>
+                            
+                            <div class="language-item">
+                                <span class="language-name">Português</span>
+                                <span class="language-level">Nativo</span>
+                            </div>
+                            <div class="language-item">
+                                <span class="language-name">Inglês</span>
+                                <span class="language-level">Técnico</span>
+                            </div>
+                        </div>
+                        
+                    </div> <!-- Fim coluna esquerda -->
+                    
+                    <!-- COLUNA DIREITA: Experiência e Formação -->
+                    <div class="resumo-col-right">
+                        
+                        <!-- Card de Experiência Profissional -->
+                        <div class="resumo-card">
+                            <h3 class="card-title">
+                                <i class="fa-solid fa-briefcase"></i>
+                                Experiência Profissional
+                            </h3>
+                            
+                            <div class="timeline-compact">
+                                
+                                <!-- Item 1 - Atual -->
+                                <div class="timeline-item current">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-period">Nov 2024 - Presente</div>
+                                        <h4>Chefe do Setor Tecnológico & Tech Lead</h4>
+                                        <div class="timeline-company">Smart City Solutions</div>
+                                        <p>Liderança técnica no desenvolvimento de soluções para cidades inteligentes: semáforos inteligentes, iluminação pública, aplicativos mobile, chatbot e IoT com Arduino. Infraestrutura AWS e integração com APIs Google.</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Item 2 -->
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-period">Dez 2023 - Jun 2024</div>
+                                        <h4>Desenvolvedor Fullstack Pleno & Gerente de Projetos</h4>
+                                        <div class="timeline-company">DKMA Tecnologia e Marketing</div>
+                                        <p>Arquitetura de software, desenvolvimento fullstack e gestão de projetos. Liderança técnica do time com uso de Asana e Freedcamp.</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Item 3 -->
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-period">Jun 2023 - Dez 2023</div>
+                                        <h4>Desenvolvedor Fullstack Pleno</h4>
+                                        <div class="timeline-company">DKMA Tecnologia e Marketing</div>
+                                        <p>Desenvolvimento dos sistemas Amtech Saúde, Manager Shelf, Mevmed Medicina Ocupacional, Inconnet Help Desk e Alfa Instrumentos.</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Item 4 -->
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-period">Fev 2023 - Jun 2023</div>
+                                        <h4>Desenvolvedor Fullstack Júnior</h4>
+                                        <div class="timeline-company">DKMA Tecnologia e Marketing</div>
+                                        <p>Desenvolvimento do sistema Whats QRCode e Sistema de Inspeção Veicular com React, Node.js e PostgreSQL.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card de Formação Acadêmica -->
+                        <div class="resumo-card">
+                            <h3 class="card-title">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                                Formação Acadêmica
+                            </h3>
+                            
+                            <div class="education-item">
+                                <div class="education-period">2026</div>
+                                <h4>Pós-graduação em Arquitetura de Software</h4>
+                                <div class="education-institution">FIAP (Faculdade de Informática e Administração Paulista)</div>
+                            </div>
+                            
+                            <div class="education-item">
+                                <div class="education-period">2020 - 2023</div>
+                                <h4>Análise e Desenvolvimento de Sistemas</h4>
+                                <div class="education-institution">UNCSUL (Universidade Cruzeiro do Sul)</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card de Cursos e Certificações -->
+                        <div class="resumo-card">
+                            <h3 class="card-title">
+                                <i class="fa-solid fa-certificate"></i>
+                                Cursos & Certificações
+                            </h3>
+                            
+                            <div class="course-item">
+                                <div class="course-name">Desenvolvimento Web Full Stack</div>
+                                <div class="course-institution">Programador BR</div>
+                            </div>
+                            
+                            <div class="course-item">
+                                <div class="course-name">Front End & Design Web</div>
+                                <div class="course-institution">Origamid</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card de Soft Skills -->
+                        <div class="resumo-card">
+                            <h3 class="card-title">
+                                <i class="fa-solid fa-people-group"></i>
+                                Soft Skills
+                            </h3>
+                            
+                            <div class="soft-skills">
+                                <span class="soft-skill">Liderança</span>
+                                <span class="soft-skill">Gestão de Times</span>
+                                <span class="soft-skill">Comunicação</span>
+                                <span class="soft-skill">Resolução de Problemas</span>
+                                <span class="soft-skill">Pensamento Estratégico</span>
+                                <span class="soft-skill">Arquitetura de Soluções</span>
+                                <span class="soft-skill">Metodologias Ágeis</span>
+                            </div>
+                        </div>
+                        
+                    </div> <!-- Fim coluna direita -->
+                    
+                </div> <!-- Fim resumo-grid -->
+                
+                <!-- Botão para download do CV -->
+                <div class="download-cv-container">
+                    <a href="/pdf/curriculo.pdf" class="btn btn-large" download>
+                        <i class="fa-solid fa-download"></i>
+                        Download CV Completo
+                    </a>
+                </div>
+                
+            </main>
         </div>
+    </div>
 
-        <div class="section">
-          <p class="section-title">Arquitetura de Projetos</p>
-          <p class="empresa-texto">Minha abordagem inclui também a arquitetura de projetos, assegurando que as soluções sejam não apenas
-            funcionais, mas também sustentáveis e adaptáveis às necessidades futuras.</p>
-        </div>
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2024 Guilherme Gomes. Todos os direitos reservados.</p>
+    </footer>
 
-        <div class="section">
-          <p class="section-title">Comprometimento com Qualidade</p>
-          <p class="empresa-texto">Estou comprometido em fornecer soluções de alta qualidade, combinando minha experiência técnica com uma
-            visão estratégica para entregar resultados excepcionais.</p>
-        </div>
-      </div>
-       <!---typed js for typing text effect-->
+    <!---typed js for typing text effect -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
     <script>
-        /** creating button click show hide navbar **/
+        // Menu Toggle para Mobile
         var togglebtn = document.querySelector(".togglebtn");
         var nav = document.querySelector(".navlinks");
-        var links = document.querySelector(".navlinks li");
 
         togglebtn.addEventListener("click", function () {
             this.classList.toggle("click");
             nav.classList.toggle("open");
-        })
-
-        var typed = new Typed(".input", {
-            strings: ["Full Stack Developer", "Project Manager"],
-            typedSpeed: 70,
-            backSpeed: 55,
-            loop: true
-        })
+        });
     </script>
 </body>
-
 </html>
