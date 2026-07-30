@@ -1,0 +1,11 @@
+{
+  "name": "Guilherme Teixeira Gomes — Tech Lead & Arquitetura de Software",
+  "short_name": "G. Gomes",
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#0b0e13",
+  "background_color": "#0b0e13",
+  "display": "standalone"
+}

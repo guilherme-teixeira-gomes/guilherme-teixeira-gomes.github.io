@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Luminária acesa">
+  <defs>
+    <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#ffb13b" stop-opacity="0.78"/>
+      <stop offset="55%"  stop-color="#ffb13b" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#ffb13b" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#ffd08a" stop-opacity="0.85"/>
+      <stop offset="45%"  stop-color="#ffb13b" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ffb13b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- asfalto noturno -->
+  <rect width="64" height="64" rx="13" fill="#0b0e13"/>
+
+  <!-- cone de luz -->
+  <path d="M23 25 H41 L53 55 H11 Z" fill="url(#cone)"/>
+
+  <!-- halo -->
+  <circle cx="32" cy="23" r="17" fill="url(#halo)"/>
+
+  <!-- luminária -->
+  <path d="M21.5 15 H42.5 a2.5 2.5 0 0 1 2.5 2.5 v1.5 a4 4 0 0 1 -4 4 H23 a4 4 0 0 1 -4 -4 v-1.5 a2.5 2.5 0 0 1 2.5 -2.5 Z" fill="#ffb13b"/>
+
+  <!-- ponto de luz -->
+  <ellipse cx="32" cy="24.5" rx="7" ry="2.6" fill="#ffe0ad"/>
+</svg>
