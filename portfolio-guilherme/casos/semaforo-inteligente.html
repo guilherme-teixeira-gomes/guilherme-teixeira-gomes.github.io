@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semáforo inteligente — Guilherme Teixeira Gomes</title>
+<meta name="description" content="Caso de arquitetura: controle remoto de semáforos com Arduino, MQTT, gateway Python/Flask sobre Tailscale e backend Node.js, com três níveis de prioridade.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap topo-in">
+    <a class="marca" href="../index.html"><span class="pisca" aria-hidden="true"></span> Guilherme Gomes</a>
+    <button class="abrir-menu" aria-expanded="false" aria-controls="menu-principal">Menu</button>
+    <nav class="menu" id="menu-principal">
+      <a href="../index.html#casos">Casos</a>
+      <a href="../index.html#experiencia">Experiência</a>
+      <a href="../index.html#stack">Stack</a>
+      <a href="../index.html#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="sec sec--curta caso-topo">
+    <div class="wrap">
+      <a class="voltar" href="../index.html#casos">← Todos os casos</a>
+      <h1>Semáforo inteligente<br>com prioridade em camadas</h1>
+      <p class="resumo">
+        Controlar um cruzamento pela internet é fácil. Controlar um cruzamento pela internet de um jeito que
+        continue seguro quando a internet cair é o problema de verdade.
+      </p>
+
+      <dl class="ficha-tecnica">
+        <div><dt>Cliente</dt><dd>Vegalux · projeto de mobilidade urbana</dd></div>
+        <div><dt>Papel</dt><dd>Arquitetura e implementação ponta a ponta</dd></div>
+        <div><dt>Camadas</dt><dd>Firmware · gateway · nuvem · painel</dd></div>
+        <div><dt>Situação</dt><dd>Em produção</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap prosa reveal">
+      <h3>O problema</h3>
+      <p>
+        O pedido inicial era simples: permitir que o operador mudasse os tempos de um semáforo remotamente e
+        programasse horários diferentes para o pico da manhã, o pico da tarde e a madrugada. A complicação está
+        no que acontece quando a rede falha, o comando chega pela metade, ou dois pedidos conflitantes chegam
+        ao mesmo tempo. Um semáforo não pode ficar em estado indefinido enquanto espera uma resposta HTTP.
+      </p>
+      <p>
+        A arquitetura precisava garantir que o cruzamento tivesse sempre um comportamento válido, mesmo
+        totalmente isolado — e que qualquer camada acima pudesse assumir o controle sem ambiguidade sobre
+        quem manda.
+      </p>
+
+      <h3>Arquitetura</h3>
+      <p>
+        Quatro camadas físicas separadas, cada uma capaz de operar quando a de cima desaparece. O firmware é
+        autônomo; o gateway local vive dentro da rede do cruzamento e é alcançável pela nuvem por uma rede
+        privada Tailscale, sem abrir porta para a internet.
+      </p>
+    </div>
+
+    <div class="wrap">
+      <figure class="diagrama reveal">
+        <svg viewBox="0 0 940 470" role="img" aria-label="Diagrama: firmware Arduino, gateway Flask, broker MQTT, backend Node.js e painel, com três modos de prioridade">
+          <defs>
+            <marker id="s2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#5c6a80"/>
+            </marker>
+            <marker id="s2i" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#7fd1d6"/>
+            </marker>
+            <style>
+              .b   { fill:#171d27; stroke:#2c3648; stroke-width:1; rx:4 }
+              .ba  { fill:#1a1f2b; stroke:#ffb13b66; stroke-width:1; rx:4 }
+              .g   { fill:#0f141c; stroke:#2c3648; stroke-width:1; stroke-dasharray:4 4; rx:6 }
+              .tt  { font-family:'IBM Plex Sans',sans-serif; font-size:12.5px; fill:#e8edf5; font-weight:600 }
+              .ts  { font-family:'IBM Plex Mono',monospace; font-size:10px; fill:#7f8b9e }
+              .hd  { font-family:'IBM Plex Mono',monospace; font-size:10px; fill:#ffb13b; letter-spacing:1.6px }
+              .hdf { fill:#7fd1d6 }
+              .l   { stroke:#5c6a80; stroke-width:1.2; fill:none }
+              .li  { stroke:#7fd1d6; stroke-width:1.2; fill:none; stroke-dasharray:5 4 }
+              .lbl { font-family:'IBM Plex Mono',monospace; font-size:9.5px; fill:#7f8b9e }
+            </style>
+          </defs>
+
+          <!-- Cruzamento -->
+          <text class="hd" x="16" y="24">NO CRUZAMENTO</text>
+          <rect class="g" x="16" y="36" width="330" height="188"/>
+
+          <rect class="ba" x="34" y="58" width="140" height="70"/>
+          <text class="tt" x="48" y="82">Arduino</text>
+          <text class="ts" x="48" y="99">máquina de estados</text>
+          <text class="ts" x="48" y="114">do ciclo semafórico</text>
+
+          <rect class="b" x="196" y="58" width="132" height="70"/>
+          <text class="tt" x="210" y="82">Grupos focais</text>
+          <text class="ts" x="210" y="99">verde / amarelo</text>
+          <text class="ts" x="210" y="114">vermelho</text>
+
+          <rect class="b" x="34" y="146" width="294" height="58"/>
+          <text class="tt" x="48" y="170">Mini PC Linux · gateway Flask</text>
+          <text class="ts" x="48" y="188">serial com o controlador · alcançável só via Tailscale</text>
+
+          <path class="l" d="M174,93 H192" marker-end="url(#s2)"/>
+          <path class="l" d="M104,142 V132" marker-end="url(#s2)"/>
+          <path class="l" d="M124,132 V142" marker-end="url(#s2)"/>
+
+          <!-- Transporte -->
+          <text class="hd" x="392" y="24">TRANSPORTE</text>
+          <rect class="b" x="392" y="102" width="150" height="70"/>
+          <text class="tt" x="406" y="126">Broker MQTT</text>
+          <text class="ts" x="406" y="143">tópicos por cruzamento</text>
+          <text class="ts" x="406" y="158">QoS e last will</text>
+
+          <!-- Nuvem -->
+          <text class="hd" x="592" y="24">NUVEM</text>
+          <rect class="g" x="592" y="36" width="332" height="188"/>
+
+          <rect class="ba" x="610" y="58" width="296" height="66"/>
+          <text class="tt" x="624" y="82">Backend Node.js · Heroku</text>
+          <text class="ts" x="624" y="100">agenda, resolução de prioridade e histórico</text>
+          <text class="ts" x="624" y="115">publica comandos, assina estado</text>
+
+          <rect class="b" x="610" y="142" width="142" height="62"/>
+          <text class="tt" x="624" y="166">Painel do operador</text>
+          <text class="ts" x="624" y="184">React</text>
+
+          <rect class="b" x="766" y="142" width="140" height="62"/>
+          <text class="tt" x="780" y="166">PostgreSQL</text>
+          <text class="ts" x="780" y="184">agenda e auditoria</text>
+
+          <path class="l" d="M690,124 V138" marker-end="url(#s2)"/>
+          <path class="l" d="M836,124 V138" marker-end="url(#s2)"/>
+
+          <path class="l" d="M332,175 H364 V137 H388" marker-end="url(#s2)"/>
+          <path class="l" d="M542,137 H570 V91 H606" marker-end="url(#s2)"/>
+          <path class="li" d="M606,105 H570 V151 H542" marker-end="url(#s2i)"/>
+          <path class="li" d="M388,151 H364 V193 H332" marker-end="url(#s2i)"/>
+          <text class="lbl" x="352" y="128">estado ↑</text>
+          <text class="lbl" x="352" y="212">comando ↓</text>
+
+          <!-- Prioridade -->
+          <text class="hd" x="16" y="286">RESOLUÇÃO DE PRIORIDADE — QUEM MANDA QUANDO TODOS FALAM</text>
+
+          <rect class="ba" x="16" y="302" width="290" height="66"/>
+          <text class="tt" x="32" y="326">1 · AGENDA</text>
+          <text class="ts" x="32" y="344">programação por faixa de horário</text>
+          <text class="ts" x="32" y="359">o comportamento padrão do cruzamento</text>
+
+          <rect class="b" x="324" y="302" width="290" height="66"/>
+          <text class="tt" x="340" y="326">2 · COMANDO</text>
+          <text class="ts" x="340" y="344">intervenção manual do operador</text>
+          <text class="ts" x="340" y="359">sobrepõe a agenda enquanto durar</text>
+
+          <rect class="b" x="632" y="302" width="292" height="66"/>
+          <text class="tt" x="648" y="326">3 · FÁBRICA</text>
+          <text class="ts" x="648" y="344">ciclo fixo gravado no firmware</text>
+          <text class="ts" x="648" y="359">assume sozinho se tudo acima sumir</text>
+
+          <path class="l" d="M306,335 H320" marker-end="url(#s2)"/>
+          <path class="l" d="M614,335 H628" marker-end="url(#s2)"/>
+
+          <rect class="b" x="16" y="392" width="908" height="52"/>
+          <text class="ts" x="32" y="414">Regra: a camada mais alta disponível vence. A queda de qualquer camada é degradação prevista, não falha —</text>
+          <text class="ts" x="32" y="431">o cruzamento nunca fica sem um comportamento definido, mesmo isolado da rede.</text>
+        </svg>
+        <figcaption>
+          Linha contínua: estado subindo do cruzamento. Linha tracejada ciano: comando descendo da nuvem. A hierarquia de prioridade
+          é a mesma no backend e no firmware, para que os dois concordem sem precisar negociar.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="wrap prosa reveal">
+      <h3>A falha mais instrutiva do projeto</h3>
+      <p>
+        Durante a integração, comandos enviados pelo gateway eram aceitos, publicados e confirmados — e o
+        semáforo simplesmente ignorava. Nenhum erro, nenhum log vermelho, nada. O firmware esperava campos
+        separados por <code>|</code>; o gateway montava a mensagem com <code>:</code>. O parser lia a string,
+        não encontrava o separador, e descartava em silêncio.
+      </p>
+      <p>
+        A lição não foi sobre o caractere. Foi sobre o fato de eu ter deixado a definição do protocolo viver
+        em dois lugares, escrita duas vezes, sem contrato compartilhado e sem qualquer validação que
+        recusasse ruidosamente uma mensagem malformada. Um payload inválido precisa gritar. Depois disso,
+        toda fronteira de serialização do projeto ganhou validação explícita e log de rejeição.
+      </p>
+
+      <h3>Requisitos que moldaram a solução</h3>
+      <ul>
+        <li><strong>Segurança de rede sem porta exposta:</strong> o mini PC não recebe conexão da internet
+          pública. A nuvem o alcança por Tailscale, o que resolve NAT e autenticação de uma vez só.</li>
+        <li><strong>Autonomia local:</strong> o Arduino mantém o ciclo mesmo sem gateway, e o gateway mantém a
+          agenda mesmo sem nuvem.</li>
+        <li><strong>Auditoria:</strong> todo comando manual fica registrado com autor e horário — em
+          infraestrutura urbana, saber quem mudou o quê deixa de ser conveniência.</li>
+        <li><strong>Idempotência:</strong> reenvio de comando não produz efeito duplicado, porque o estado
+          desejado é declarado, não incrementado.</li>
+      </ul>
+
+      <h3>O que este projeto ensinou sobre arquitetura</h3>
+      <p>
+        Sistemas que tocam o mundo físico invertem uma intuição comum do desenvolvimento web: indisponibilidade
+        não é o pior caso. O pior caso é o sistema disponível e errado. Um semáforo offline com ciclo fixo é
+        aceitável; um semáforo online obedecendo a um comando corrompido, não. Isso empurra a arquitetura na
+        direção de fronteiras rígidas, contratos validados e degradação escrita antes da funcionalidade — e é
+        o princípio que passei a levar também para os sistemas puramente digitais que construo.
+      </p>
+    </div>
+  </section>
+
+  <section class="sec sec--curta">
+    <div class="wrap proximo">
+      <a class="voltar" href="../index.html#casos">← Todos os casos</a>
+      <a class="btn" href="telemetria-iluminacao-publica.html">← Caso anterior: telemetria de iluminação</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap rodape-in">
+    <span>Guilherme Teixeira Gomes · 2026</span>
+    <span>Feito à mão em HTML, CSS e JavaScript</span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+</body>
+</html>

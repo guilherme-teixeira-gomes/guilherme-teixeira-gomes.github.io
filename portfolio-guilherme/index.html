@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guilherme Teixeira Gomes — Tech Lead & Arquitetura de Software</title>
+<meta name="description" content="Tech Lead e arquiteto de software. Projeto e opero plataformas que controlam infraestrutura urbana real: telemetria de iluminação pública, semáforos inteligentes e operação de campo, em Node.js, TypeScript, AWS e IoT.">
+<meta name="author" content="Guilherme Teixeira Gomes">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Guilherme Teixeira Gomes — Tech Lead & Arquitetura de Software">
+<meta property="og:description" content="Plataformas que controlam infraestrutura urbana real: iluminação pública, semáforos e telemetria IoT.">
+<meta property="og:image" content="images/guigomes.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap topo-in">
+    <a class="marca" href="#topo"><span class="pisca" aria-hidden="true"></span> Guilherme Gomes</a>
+    <button class="abrir-menu" aria-expanded="false" aria-controls="menu-principal">Menu</button>
+    <nav class="menu" id="menu-principal">
+      <a href="#casos">Casos</a>
+      <a href="#experiencia">Experiência</a>
+      <a href="#stack">Stack</a>
+      <a href="#formacao">Formação</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main id="topo">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="malha" aria-hidden="true"></div>
+    <div class="wrap hero-in">
+      <span class="rotulo">Tech Lead · Arquiteto de Software · Full Stack</span>
+      <h1>Guilherme<br>Teixeira <em>Gomes</em></h1>
+      <p class="chamada">
+        Responsável técnico por uma plataforma de Smart City em produção: iluminação pública,
+        semáforos e operação de campo para um município real.
+      </p>
+      <p class="tese">
+        Trabalho de ponta a ponta — do controlador no topo do poste ao painel que a prefeitura abre para
+        cobrar resultado. <strong>Node.js e TypeScript</strong> no backend, <strong>React Native</strong>
+        nas mãos dos eletricistas, <strong>MQTT</strong> no meio do caminho.
+      </p>
+      <div class="hero-acoes">
+        <a class="btn btn--forte" href="#casos">Ver os casos</a>
+        <a class="btn" href="pdf/curriculo.pdf" download>Baixar currículo (PDF)</a>
+        <a class="btn" href="https://www.linkedin.com/in/guilherme-txgomes" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RÉGUA DE INDICADORES ================= -->
+  <section class="regua">
+    <div class="wrap">
+      <div class="regua-grade">
+        <div class="regua-item">
+          <div class="n">14.782</div>
+          <span class="l">pontos de luz monitorados</span>
+        </div>
+        <div class="regua-item">
+          <div class="n">3</div>
+          <span class="l">apps em produção · web + 2 mobile</span>
+        </div>
+        <div class="regua-item">
+          <div class="n">24<span>/7</span></div>
+          <span class="l">telemetria MQTT ininterrupta</span>
+        </div>
+        <div class="regua-item">
+          <div class="n">1</div>
+          <span class="l">município atendido em contrato</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TESE ================= -->
+  <section class="sec" id="sobre">
+    <div class="wrap duas-colunas reveal">
+      <div class="lado-nota">
+        Açailândia, MA<br>
+        −4.9471, −47.4954<br><br>
+        A cidade onde o sistema roda.<br>
+        Cada ponto no mapa do dashboard<br>
+        é um poste que alguém precisa<br>
+        que esteja aceso hoje à noite.
+      </div>
+      <div>
+        <p>
+          Boa parte do software que escrevi nos últimos anos tem uma característica incomum: quando algo
+          quebra, dá para ver da janela. Uma fila travada é uma rua apagada. Um protocolo mal serializado
+          é um semáforo que não muda de estado. Isso muda o jeito de decidir arquitetura — confiabilidade
+          e observabilidade deixam de ser item de checklist e viram requisito de primeira ordem.
+        </p>
+        <p>
+          Hoje são <strong>14.782 pontos de luz</strong> monitorados. Trabalho de ponta a ponta: firmware
+          conversando por MQTT, backend em <strong>Node.js e TypeScript</strong>
+          com PostgreSQL e filas, apps de campo em <strong>React Native</strong> usados por eletricistas em serviço,
+          e o painel web que a prefeitura abre para cobrar resultado. Fui responsável por levar essa plataforma
+          de <strong>mono-tenant para multi-tenant</strong> sem derrubar o app que a equipe de campo já usava
+          em produção — o tipo de refatoração que se paga em decisão de arquitetura, não em linha de código.
+        </p>
+        <p>
+          Hoje busco posições de <strong>Tech Lead, Arquiteto de Software ou Desenvolvedor Sênior</strong>,
+          onde esse repertório de sistemas distribuídos, integração física e operação real possa
+          escalar para um time maior.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CASOS ================= -->
+  <section class="sec" id="casos">
+    <div class="wrap">
+      <div class="sec-cabeca reveal">
+        <h2>Casos de arquitetura</h2>
+        <span class="contagem">2 sistemas em produção</span>
+      </div>
+
+      <div class="casos">
+
+        <article class="caso reveal">
+          <div class="caso-meta">
+            <div class="bloco"><b>Período</b>2024 — presente</div>
+            <div class="bloco"><b>Papel</b>Tech Lead / arquiteto / dev</div>
+            <div class="bloco"><b>Status</b>Em produção</div>
+          </div>
+          <div>
+            <h3>Plataforma de telemetria e gestão de iluminação pública</h3>
+            <div class="tags">
+              <span class="tag">Node.js</span><span class="tag">TypeScript</span><span class="tag">TypeORM</span>
+              <span class="tag">PostgreSQL</span><span class="tag">MQTT</span><span class="tag">Bull / Redis</span>
+              <span class="tag">React</span><span class="tag">React Native</span><span class="tag">Mapbox</span>
+              <span class="tag tag--q">Multi-tenant</span>
+            </div>
+            <p>
+              Sistema que monitora e comanda o parque de iluminação de um município: telemetria por MQTT,
+              mapa operacional de postes e pontos, ordens de serviço para as equipes de campo, atendimento
+              ao cidadão via WhatsApp e relatórios em PDF gerados de forma assíncrona. Migrado de
+              single-tenant para multi-empresa mantendo compatibilidade com o app legado em uso.
+            </p>
+            <a class="ir" href="casos/telemetria-iluminacao-publica.html">Ler o caso completo <span>→</span></a>
+          </div>
+        </article>
+
+        <article class="caso reveal">
+          <div class="caso-meta">
+            <div class="bloco"><b>Período</b>2025 — presente</div>
+            <div class="bloco"><b>Papel</b>Arquitetura e implementação</div>
+            <div class="bloco"><b>Status</b>Em produção</div>
+          </div>
+          <div>
+            <h3>Semáforo inteligente com controle remoto e prioridade em camadas</h3>
+            <div class="tags">
+              <span class="tag">Arduino</span><span class="tag">MQTT</span><span class="tag">Python / Flask</span>
+              <span class="tag">Tailscale</span><span class="tag">Node.js</span><span class="tag">Heroku</span>
+              <span class="tag tag--q">Sistemas embarcados</span>
+            </div>
+            <p>
+              Controle de cruzamentos com três níveis de prioridade — agenda programada, comando manual e
+              modo fábrica — atravessando quatro ambientes: firmware no Arduino, gateway Python num mini PC
+              conectado por Tailscale, broker MQTT e backend na nuvem. Inclui o diagnóstico de um erro de
+              protocolo silencioso entre gateway e firmware.
+            </p>
+            <a class="ir" href="casos/semaforo-inteligente.html">Ler o caso completo <span>→</span></a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EXPERIÊNCIA ================= -->
+  <section class="sec" id="experiencia">
+    <div class="wrap">
+      <div class="sec-cabeca reveal">
+        <h2>Experiência</h2>
+        <span class="contagem">desde 2023</span>
+      </div>
+
+      <div class="linha reveal">
+
+        <div class="parada parada--atual">
+          <span class="quando">Nov 2024 — presente</span>
+          <h3>Tech Lead · Software Engineer</h3>
+          <div class="onde">Vegalux Iluminações</div>
+          <ul>
+            <li>Responsável técnico pela plataforma de Smart City da empresa: iluminação pública, semáforos e operação de campo.</li>
+            <li>Defini a arquitetura multi-tenant que permitiu atender novas empresas sem quebrar o app legado em produção.</li>
+            <li>Backend Node.js/TypeScript com TypeORM, PostgreSQL, filas Bull/Redis e geração assíncrona de relatórios com Puppeteer.</li>
+            <li>Frontend React/Vite e dois aplicativos Expo/React Native usados diariamente por equipes em campo.</li>
+            <li>Integração IoT (MQTT, Arduino), Google Maps/Places e atendimento automatizado via WhatsApp.</li>
+            <li>Observabilidade e qualidade: logging estruturado com Pino, índices de banco, testes e análise estática no SonarCloud.</li>
+          </ul>
+        </div>
+
+        <div class="parada">
+          <span class="quando">Ago 2023 — Nov 2024</span>
+          <h3>Tech Lead · Gerente de Projetos</h3>
+          <div class="onde">DKMA Tecnologia e Marketing</div>
+          <ul>
+            <li>Liderança técnica e gestão simultânea de múltiplos projetos de clientes.</li>
+            <li>Definição de arquitetura, padrões técnicos e processos de desenvolvimento.</li>
+            <li>Coordenação do time com Kanban e ferramentas de gestão (Asana, Trello, Freedcamp, Bitrix).</li>
+            <li>Priorização, planejamento e acompanhamento de entregas junto às áreas de negócio.</li>
+          </ul>
+        </div>
+
+        <div class="parada">
+          <span class="quando">Fev 2023 — Ago 2023</span>
+          <h3>Desenvolvedor Full Stack</h3>
+          <div class="onde">DKMA Tecnologia e Marketing</div>
+          <ul>
+            <li>Desenvolvimento e manutenção de sistemas web em Node.js, React, PHP/CodeIgniter e Docker.</li>
+            <li>Construção de APIs REST e integrações com bancos MySQL, MariaDB e PostgreSQL.</li>
+            <li>Atuação em produtos como Amtech Saúde, Manager Shelf, Mevmed e Inconnet Help Desk.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STACK ================= -->
+  <section class="sec" id="stack">
+    <div class="wrap">
+      <div class="sec-cabeca reveal">
+        <h2>Stack</h2>
+        <span class="contagem">o que uso em produção</span>
+      </div>
+
+      <div class="stack reveal">
+        <div class="stack-bloco">
+          <h4>Backend</h4>
+          <ul>
+            <li>Node.js · TypeScript</li>
+            <li>Express · TypeORM · Prisma</li>
+            <li>PostgreSQL · MySQL · Redis</li>
+            <li>Bull (filas e jobs)</li>
+            <li>API REST · Clean Architecture</li>
+          </ul>
+        </div>
+        <div class="stack-bloco">
+          <h4>Frontend & Mobile</h4>
+          <ul>
+            <li>React · Vite · React Router</li>
+            <li>React Native · Expo</li>
+            <li>TypeScript · Context / hooks</li>
+            <li>Ant Design · MUI · Styled Components</li>
+            <li>Mapbox · Recharts</li>
+          </ul>
+        </div>
+        <div class="stack-bloco">
+          <h4>Infra & DevOps</h4>
+          <ul>
+            <li>AWS (Lambda, API Gateway, RDS, EKS)</li>
+            <li>Docker · Kubernetes · Helm</li>
+            <li>Terraform (IaC)</li>
+            <li>GitHub Actions (CI/CD)</li>
+            <li>Heroku · GCS · SonarCloud</li>
+          </ul>
+        </div>
+        <div class="stack-bloco">
+          <h4>IoT & Integrações</h4>
+          <ul>
+            <li>MQTT · Arduino · Tailscale</li>
+            <li>Python / Flask (gateway)</li>
+            <li>Twilio / WhatsApp Business</li>
+            <li>Google Maps · Places</li>
+            <li>Puppeteer (relatórios PDF)</li>
+          </ul>
+        </div>
+        <div class="stack-bloco">
+          <h4>Arquitetura</h4>
+          <ul>
+            <li>Multi-tenancy</li>
+            <li>Arquitetura orientada a eventos</li>
+            <li>DDD · Clean Architecture</li>
+            <li>Modelo C4 · ADRs · RFCs</li>
+            <li>Gestão de débito técnico</li>
+          </ul>
+        </div>
+        <div class="stack-bloco">
+          <h4>Observabilidade & Qualidade</h4>
+          <ul>
+            <li>New Relic (APM)</li>
+            <li>OpenTelemetry · Prometheus · Grafana</li>
+            <li>Logs estruturados (Pino, correlation ID)</li>
+            <li>Testes unitários e de integração</li>
+            <li>Análise estática · OWASP Top 10</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FORMAÇÃO ================= -->
+  <section class="sec" id="formacao">
+    <div class="wrap">
+      <div class="sec-cabeca reveal">
+        <h2>Formação</h2>
+      </div>
+
+      <div class="formacao reveal">
+        <div class="ficha">
+          <h3>Pós-graduação em Arquitetura de Software</h3>
+          <div class="sub">FIAP · em andamento · conclusão prevista 2027</div>
+          <ul>
+            <li><b>Fase 1 — Arquitetura de Software</b><br>DDD, Event Storming, modelo C4, ADRs e RFCs, requisitos não funcionais, qualidade de software (TDD, testes de integração e E2E) e desenvolvimento seguro (OWASP Top 10).</li>
+            <li><b>Fase 2 — Kubernetes e DevOps</b><br>Clean Architecture, Docker e ECS, Terraform, GitHub Actions, Kubernetes (HPA, probes, Helm, EKS) e OpenTelemetry com Jaeger, Prometheus e Loki.</li>
+            <li><b>Fase 3 — Monitoramento e Serverless</b><br>Zabbix, Prometheus/Grafana, APM com Datadog e New Relic, API Gateway (Azure APIM e Kong) e desenvolvimento serverless com AWS SAM e Lambda.</li>
+          </ul>
+        </div>
+
+        <div class="ficha">
+          <h3>Tecnólogo em Análise e Desenvolvimento de Sistemas</h3>
+          <div class="sub">Universidade Cruzeiro do Sul · concluído</div>
+          <ul>
+            <li>Base em engenharia de software, banco de dados, redes e programação orientada a objetos.</li>
+          </ul>
+          <h3 style="margin-top:26px">Idiomas</h3>
+          <div class="sub">&nbsp;</div>
+          <ul>
+            <li><b>Português</b><br>Nativo</li>
+            <li><b>Inglês</b><br>Intermediário</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTATO ================= -->
+  <section class="sec contato" id="contato">
+    <div class="wrap reveal">
+      <h2 style="margin-top:16px">Vamos<br><em>conversar</em></h2>
+      <p class="tese" style="max-width:56ch">
+        Aberto a posições de Tech Lead, Arquiteto de Software e Desenvolvedor Sênior —
+        remoto ou híbrido. Respondo em até um dia útil.
+      </p>
+      <div class="canais">
+        <a class="btn btn--forte" href="mailto:guilherme.tgomes@hotmail.com">guilherme.tgomes@hotmail.com</a>
+        <a class="btn" href="https://www.linkedin.com/in/guilherme-txgomes" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/guilherme-teixeira-gomes" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://wa.me/5511966551060" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn" href="pdf/curriculo.pdf" download>Currículo PDF</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap rodape-in">
+    <span>Guilherme Teixeira Gomes · 2026</span>
+    <span>Feito à mão em HTML, CSS e JavaScript</span>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

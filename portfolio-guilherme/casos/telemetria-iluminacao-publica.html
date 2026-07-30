@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telemetria de iluminação pública — Guilherme Teixeira Gomes</title>
+<meta name="description" content="Caso de arquitetura: plataforma multi-tenant de telemetria e gestão de iluminação pública em Node.js, TypeScript, PostgreSQL, MQTT e React Native.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap topo-in">
+    <a class="marca" href="../index.html"><span class="pisca" aria-hidden="true"></span> Guilherme Gomes</a>
+    <button class="abrir-menu" aria-expanded="false" aria-controls="menu-principal">Menu</button>
+    <nav class="menu" id="menu-principal">
+      <a href="../index.html#casos">Casos</a>
+      <a href="../index.html#experiencia">Experiência</a>
+      <a href="../index.html#stack">Stack</a>
+      <a href="../index.html#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="sec sec--curta caso-topo">
+    <div class="wrap">
+      <a class="voltar" href="../index.html#casos">← Todos os casos</a>
+      <h1>Telemetria e gestão<br>de iluminação pública</h1>
+      <p class="resumo">
+        Uma plataforma que monitora, comanda e presta contas do parque de iluminação de um município
+        inteiro — do controlador no topo do poste até o relatório que a prefeitura recebe em PDF.
+      </p>
+
+      <dl class="ficha-tecnica">
+        <div><dt>Cliente</dt><dd>Vegalux · município de Açailândia (MA)</dd></div>
+        <div><dt>Papel</dt><dd>Tech Lead, arquitetura e desenvolvimento</dd></div>
+        <div><dt>Período</dt><dd>2024 — presente</dd></div>
+        <div><dt>Situação</dt><dd>Em produção, uso diário</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap prosa reveal">
+      <h3>O problema</h3>
+      <p>
+        Gestão de iluminação pública, no modelo tradicional, é reativa: o cidadão liga reclamando de uma rua
+        escura, alguém anota num caderno, uma equipe sai para verificar. Não há inventário confiável do parque,
+        não há como provar consumo, e não há histórico de manutenção. O contrato com o município, porém, exige
+        exatamente isso — indicadores, prazos de atendimento e prestação de contas.
+      </p>
+      <p>
+        O sistema precisava resolver quatro coisas ao mesmo tempo, cada uma com requisitos de tempo
+        muito diferentes: <strong>telemetria contínua</strong> dos controladores, <strong>operação de campo</strong>
+        por equipes com conectividade instável, <strong>atendimento ao cidadão</strong> em canal assíncrono
+        (WhatsApp), e <strong>relatórios pesados</strong> que podem levar minutos para renderizar. Misturar tudo
+        num único fluxo síncrono era garantia de derrubar a API.
+      </p>
+
+      <h3>Arquitetura</h3>
+      <p>
+        A separação central é entre o caminho quente (telemetria e comandos, que precisam ser rápidos e nunca
+        bloquear) e o caminho frio (relatórios e processamento em lote, que podem demorar desde que não travem
+        ninguém). Filas fazem a fronteira entre os dois.
+      </p>
+    </div>
+
+    <div class="wrap">
+      <figure class="diagrama reveal">
+        <svg viewBox="0 0 940 610" role="img" aria-label="Diagrama de arquitetura: campo IoT, ingestão, aplicação Node.js, persistência e clientes">
+          <defs>
+            <marker id="seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#5c6a80"/>
+            </marker>
+            <marker id="seta-luz" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#ffb13b"/>
+            </marker>
+            <style>
+              .cx  { fill:#171d27; stroke:#2c3648; stroke-width:1; rx:4 }
+              .cxq { fill:#1a1f2b; stroke:#ffb13b55; stroke-width:1; rx:4 }
+              .grupo { fill:#0f141c; stroke:#2c3648; stroke-width:1; stroke-dasharray:4 4; rx:6 }
+              .tt  { font-family:'IBM Plex Sans',sans-serif; font-size:12.5px; fill:#e8edf5; font-weight:600 }
+              .ts  { font-family:'IBM Plex Mono',monospace; font-size:10px; fill:#7f8b9e }
+              .hd  { font-family:'IBM Plex Mono',monospace; font-size:10px; fill:#ffb13b; letter-spacing:1.6px }
+              .lk  { stroke:#5c6a80; stroke-width:1.2; fill:none }
+              .lkq { stroke:#ffb13b; stroke-width:1.4; fill:none }
+              .lbl { font-family:'IBM Plex Mono',monospace; font-size:9.5px; fill:#7f8b9e }
+            </style>
+          </defs>
+
+          <!-- COLUNA A — CAMPO -->
+          <text class="hd" x="16" y="24">CAMPO / IOT</text>
+          <rect class="cx" x="16" y="38" width="176" height="58"/>
+          <text class="tt" x="30" y="62">Controladores de poste</text>
+          <text class="ts" x="30" y="80">estado, falha, corrente</text>
+
+          <rect class="cx" x="16" y="112" width="176" height="58"/>
+          <text class="tt" x="30" y="136">Medidores de consumo</text>
+          <text class="ts" x="30" y="154">consumo do parque</text>
+
+          <rect class="cx" x="16" y="330" width="176" height="58"/>
+          <text class="tt" x="30" y="354">Cidadão</text>
+          <text class="ts" x="30" y="372">reclamação por WhatsApp</text>
+
+          <!-- COLUNA B — INGESTÃO -->
+          <text class="hd" x="240" y="24">INGESTÃO</text>
+          <rect class="cxq" x="240" y="80" width="150" height="58"/>
+          <text class="tt" x="254" y="104">Broker MQTT</text>
+          <text class="ts" x="254" y="122">pub/sub bidirecional</text>
+
+          <rect class="cx" x="240" y="330" width="150" height="58"/>
+          <text class="tt" x="254" y="354">Webhook Twilio</text>
+          <text class="ts" x="254" y="372">sessões de conversa</text>
+
+          <!-- COLUNA C — APLICAÇÃO -->
+          <text class="hd" x="438" y="24">APLICAÇÃO · NODE.JS + TYPESCRIPT</text>
+          <rect class="grupo" x="438" y="38" width="252" height="382"/>
+
+          <rect class="cxq" x="454" y="58" width="220" height="52"/>
+          <text class="tt" x="468" y="80">CompanyResolver</text>
+          <text class="ts" x="468" y="97">middleware de tenant por requisição</text>
+
+          <rect class="cx" x="454" y="126" width="220" height="52"/>
+          <text class="tt" x="468" y="148">Controllers HTTP</text>
+          <text class="ts" x="468" y="165">REST · autenticação JWT</text>
+
+          <rect class="cx" x="454" y="194" width="220" height="52"/>
+          <text class="tt" x="468" y="216">Camada de serviços</text>
+          <text class="ts" x="468" y="233">regra de negócio isolada</text>
+
+          <rect class="cx" x="454" y="262" width="220" height="52"/>
+          <text class="tt" x="468" y="284">TypeORM</text>
+          <text class="ts" x="468" y="301">entidades com company_id</text>
+
+          <rect class="cxq" x="454" y="330" width="220" height="72"/>
+          <text class="tt" x="468" y="352">Workers Bull</text>
+          <text class="ts" x="468" y="369">relatórios · Puppeteer · chunking</text>
+          <text class="ts" x="468" y="385">redimensiona o dyno sob carga</text>
+
+          <!-- COLUNA D — CLIENTES -->
+          <text class="hd" x="736" y="24">CLIENTES</text>
+          <rect class="cx" x="736" y="38" width="188" height="58"/>
+          <text class="tt" x="750" y="62">Painel web</text>
+          <text class="ts" x="750" y="80">React + Vite + Mapbox</text>
+
+          <rect class="cx" x="736" y="112" width="188" height="58"/>
+          <text class="tt" x="750" y="136">App de campo</text>
+          <text class="ts" x="750" y="154">Expo · ordens de serviço</text>
+
+          <rect class="cx" x="736" y="186" width="188" height="58"/>
+          <text class="tt" x="750" y="210">App legado</text>
+          <text class="ts" x="750" y="228">mesma API, contrato antigo</text>
+
+          <rect class="cx" x="736" y="260" width="188" height="58"/>
+          <text class="tt" x="750" y="284">Relatórios em PDF</text>
+          <text class="ts" x="750" y="302">link assinado do storage</text>
+
+          <!-- PERSISTÊNCIA -->
+          <text class="hd" x="438" y="466">PERSISTÊNCIA</text>
+          <rect class="cx" x="438" y="480" width="120" height="54"/>
+          <text class="tt" x="452" y="502">PostgreSQL</text>
+          <text class="ts" x="452" y="519">tenant por coluna</text>
+
+          <rect class="cx" x="570" y="480" width="112" height="54"/>
+          <text class="tt" x="584" y="502">Redis</text>
+          <text class="ts" x="584" y="519">fila de jobs</text>
+
+          <rect class="cx" x="694" y="480" width="130" height="54"/>
+          <text class="tt" x="708" y="502">Object storage</text>
+          <text class="ts" x="708" y="519">PDFs e fotos</text>
+
+
+          <!-- LEGENDA -->
+          <text class="hd" x="16" y="466">LEGENDA</text>
+          <path class="lkq" d="M18,486 H54"/>
+          <text class="ts" x="64" y="490">caminho quente · telemetria e comando em tempo real</text>
+          <path class="lk" d="M18,508 H54"/>
+          <text class="ts" x="64" y="512">caminho frio · operação, atendimento e relatórios</text>
+          <rect x="18" y="524" width="36" height="14" fill="none" stroke="#2c3648" stroke-dasharray="4 4" rx="3"/>
+          <text class="ts" x="64" y="535">fronteira de processo</text>
+
+          <!-- LIGAÇÕES -->
+          <path class="lkq" d="M192,67 H216 V109 H236" marker-end="url(#seta-luz)"/>
+          <path class="lkq" d="M192,141 H216 V109 H236" marker-end="url(#seta-luz)"/>
+          <path class="lk"  d="M192,359 H236" marker-end="url(#seta)"/>
+          <path class="lkq" d="M390,109 H414 V152 H450" marker-end="url(#seta-luz)"/>
+          <path class="lk"  d="M390,359 H414 V152 H450" marker-end="url(#seta)"/>
+          <text class="lbl" x="398" y="100">telemetria</text>
+
+          <path class="lk" d="M564,110 V122" marker-end="url(#seta)"/>
+          <path class="lk" d="M564,178 V190" marker-end="url(#seta)"/>
+          <path class="lk" d="M564,246 V258" marker-end="url(#seta)"/>
+          <path class="lk" d="M564,314 V326" marker-end="url(#seta)"/>
+
+          <path class="lk" d="M674,152 H710 V67 H732" marker-end="url(#seta)"/>
+          <path class="lk" d="M674,152 H710 V141 H732" marker-end="url(#seta)"/>
+          <path class="lk" d="M674,152 H710 V215 H732" marker-end="url(#seta)"/>
+          <path class="lk" d="M674,366 H710 V289 H732" marker-end="url(#seta)"/>
+
+          <path class="lk" d="M498,402 V476" marker-end="url(#seta)"/>
+          <path class="lk" d="M600,402 V476" marker-end="url(#seta)"/>
+          <path class="lk" d="M700,402 V440 H759 V476" marker-end="url(#seta)"/>
+
+          <text class="lbl" x="700" y="140">API única</text>
+          <text class="lbl" x="700" y="154">2 contratos</text>
+        </svg>
+        <figcaption>
+          Fluxo âmbar: caminho quente da telemetria. Fluxo cinza: caminho frio de operação e relatórios.
+          A fronteira entre eles é a fila.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="wrap prosa reveal">
+      <h3>Decisões que definiram o sistema</h3>
+    </div>
+
+    <div class="wrap">
+      <div class="decisoes reveal">
+
+        <article class="adr">
+          <span class="id">Decisão 01</span>
+          <h4>Multi-tenancy por coluna, resolvido em middleware</h4>
+          <dl>
+            <dt>Contexto</dt>
+            <dd>O sistema nasceu para uma empresa só. Ao precisar atender várias, havia a opção de banco por
+              tenant, schema por tenant ou discriminador por linha.</dd>
+            <dt>Escolha</dt>
+            <dd>Coluna <code>company_id</code> nas entidades, com um <code>CompanyResolver</code> que determina o
+              tenant a cada requisição a partir do token e do cabeçalho — nunca por fallback implícito.</dd>
+            <dt>Consequência</dt>
+            <dd>Operação simples (um banco, uma migration) e custo baixo, ao preço de disciplina: toda query
+              precisa passar pelo filtro. O isolamento virou responsabilidade da camada de acesso a dados,
+              não do banco.</dd>
+          </dl>
+        </article>
+
+        <article class="adr">
+          <span class="id">Decisão 02</span>
+          <h4>Nunca assumir "a primeira empresa do usuário"</h4>
+          <dl>
+            <dt>Contexto</dt>
+            <dd>A tentação óbvia num sistema recém-multi-tenant é, na ausência de contexto, usar
+              <code>usuario.empresas[0]</code>. Isso resolve o compilador e cria um bug silencioso de
+              vazamento entre tenants.</dd>
+            <dt>Escolha</dt>
+            <dd>Ausência de tenant é erro explícito, não valor padrão. O app legado, que não envia o
+              cabeçalho, foi tratado por um caminho de compatibilidade declarado — não por acidente.</dd>
+            <dt>Consequência</dt>
+            <dd>Mais código de borda, e uma classe inteira de bug de isolamento que deixa de existir.</dd>
+          </dl>
+        </article>
+
+        <article class="adr">
+          <span class="id">Decisão 03</span>
+          <h4>Relatórios como jobs, não como requisições</h4>
+          <dl>
+            <dt>Contexto</dt>
+            <dd>Os relatórios de modernização, custo, ordens de serviço e parque total renderizam com Puppeteer
+              e, em intervalos longos de data, estouravam o tempo limite da requisição e a memória do dyno.</dd>
+            <dt>Escolha</dt>
+            <dd>Toda geração vai para uma fila Bull. O worker processa em blocos, salva o arquivo no object
+              storage e devolve uma URL assinada. A API responde imediatamente com o identificador do job.</dd>
+            <dt>Consequência</dt>
+            <dd>A API deixou de cair sob relatório grande. Em troca, foi preciso construir estado de job,
+              notificação de conclusão e política de retentativa.</dd>
+          </dl>
+        </article>
+
+        <article class="adr">
+          <span class="id">Decisão 04</span>
+          <h4>Compatibilidade retroativa como requisito, não como cortesia</h4>
+          <dl>
+            <dt>Contexto</dt>
+            <dd>Eletricistas usam o app antigo em serviço, todos os dias. Não havia janela para migração
+              coordenada nem para "atualize o aplicativo antes de sair".</dd>
+            <dt>Escolha</dt>
+            <dd>Os mesmos endpoints atendem dois contratos. Mudanças de comportamento — como a classificação
+              de tipo de movimentação que passou a impedir consumo ilimitado de material em estoque — foram
+              introduzidas de forma que a resposta ao cliente antigo permanecesse válida.</dd>
+            <dt>Consequência</dt>
+            <dd>Débito técnico assumido e documentado, com data para ser cobrado, em vez de uma quebra
+              em campo no meio do expediente.</dd>
+          </dl>
+        </article>
+
+      </div>
+    </div>
+
+    <div class="wrap prosa reveal">
+      <h3>O que o sistema entrega hoje</h3>
+      <ul>
+        <li>Mapa operacional com carregamento por área visível: os pontos são buscados por bounding box, com
+          debounce e limite de zoom, para não trazer o parque inteiro a cada arrasto do mapa.</li>
+        <li>Ordens de serviço com ciclo de vida completo, vinculadas a equipes, com registro de conclusão
+          e localização.</li>
+        <li>Atendimento via WhatsApp com contagem correta de conversas não lidas — depois de reescrever o
+          contador para considerar conversas distintas em vez de mensagens, o que inflava o badge com
+          sessões de bot e sessões órfãs.</li>
+        <li>Relatórios per-tenant com identidade visual de cada empresa aplicada na renderização.</li>
+        <li>Logging estruturado, índices de banco revisados e análise estática contínua no pipeline.</li>
+      </ul>
+
+      <h3>O que eu faria diferente</h3>
+      <p>
+        A troca de empresa no painel web passou por três implementações antes de estabilizar. A causa raiz era
+        conhecida — a função de recuperação do usuário devolvia uma nova referência de objeto a cada chamada,
+        realimentando o efeito que dependia dela — e a solução final foi um recarregamento explícito da página.
+        Funciona, é previsível, e é honestamente uma capitulação: o correto teria sido memoizar o contexto de
+        autenticação desde o início, em vez de tratar o sintoma três vezes.
+      </p>
+      <p>
+        A segunda lição foi sobre backfill. A migração multi-tenant assumiu que os dados históricos já tinham
+        tenant. Não tinham: postes, pontos e registros de consumo estavam todos com <code>company_id</code> nulo,
+        e só as ordens de serviço estavam corretas. Verificar o estado real da produção antes de escrever a
+        migration teria evitado o susto.
+      </p>
+    </div>
+  </section>
+
+  <section class="sec sec--curta">
+    <div class="wrap proximo">
+      <a class="voltar" href="../index.html#casos">← Todos os casos</a>
+      <a class="btn" href="semaforo-inteligente.html">Próximo caso: semáforo inteligente →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap rodape-in">
+    <span>Guilherme Teixeira Gomes · 2026</span>
+    <span>Feito à mão em HTML, CSS e JavaScript</span>
+  </div>
+</footer>
+
+<script src="../assets/app.js"></script>
+</body>
+</html>
