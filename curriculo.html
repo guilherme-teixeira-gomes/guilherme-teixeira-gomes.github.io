@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Guilherme Teixeira Gomes — Currículo</title>
+<style>
+  @page { size: A4; margin: 11mm 13mm; }
+
+  :root {
+    --tinta:   #16181d;
+    --suave:   #4a5058;
+    --fraca:   #7a828c;
+    --linha:   #d6dae0;
+    --acento:  #b26a00;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.36;
+    color: var(--tinta);
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .folha { max-width: 190mm; margin: 0 auto; padding: 8mm 0; }
+  @media print { .folha { padding: 0; } }
+
+  /* ---------- Cabeçalho ---------- */
+  h1 {
+    font-size: 21pt;
+    letter-spacing: 0.6px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.05;
+  }
+  .cargo {
+    font-size: 10pt;
+    font-weight: 600;
+    color: var(--acento);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+  .contatos {
+    margin-top: 7px;
+    padding-top: 7px;
+    border-top: 2px solid var(--tinta);
+    font-size: 9pt;
+    color: var(--suave);
+  }
+  .contatos span { white-space: nowrap; }
+  .contatos span::after { content: "  ·  "; color: var(--linha); }
+  .contatos span:last-child::after { content: ""; }
+
+  /* ---------- Seções ---------- */
+  h2 {
+    font-size: 9.5pt;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    font-weight: 700;
+    margin: 12px 0 6px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--linha);
+  }
+
+  p.resumo { text-align: justify; }
+
+  /* ---------- Experiência ---------- */
+  .cargo-bloco { margin-bottom: 10px; page-break-inside: avoid; }
+  .cargo-linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .cargo-titulo { font-size: 10.6pt; font-weight: 700; }
+  .cargo-data { font-size: 8.8pt; color: var(--fraca); white-space: nowrap; font-weight: 600; }
+  .cargo-empresa { font-size: 9.4pt; color: var(--acento); font-weight: 600; margin-bottom: 4px; }
+
+  ul { list-style: none; }
+  li { position: relative; padding-left: 11px; margin-bottom: 2.5px; }
+  li::before {
+    content: "";
+    position: absolute; left: 0; top: 0.55em;
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--fraca);
+  }
+  li b, p b { font-weight: 700; }
+
+  /* ---------- Projetos ---------- */
+  .proj { margin-bottom: 9px; page-break-inside: avoid; }
+  .proj-titulo { font-weight: 700; font-size: 10pt; }
+  .proj-stack { font-size: 8.6pt; color: var(--fraca); margin: 1px 0 3px; }
+
+  /* ---------- Competências ---------- */
+  .skills-grid { display: grid; grid-template-columns: 118px 1fr; row-gap: 3.5px; column-gap: 12px; }
+  .skills-grid dt { font-weight: 700; font-size: 9.2pt; }
+  .skills-grid dd { font-size: 9.4pt; color: var(--suave); }
+
+  /* ---------- Formação ---------- */
+  .form-item { margin-bottom: 7px; }
+  .form-item .t { font-weight: 700; }
+  .form-item .s { font-size: 9pt; color: var(--fraca); }
+  .form-item .d { font-size: 9pt; color: var(--suave); margin-top: 2px; }
+
+  /* ---------- Placeholder ---------- */
+  .pr {
+    background: #ffe9a8;
+    border-bottom: 1px solid var(--acento);
+    padding: 0 3px;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+<div class="folha">
+
+  <h1>Guilherme Teixeira Gomes</h1>
+  <div class="cargo">Tech Lead · Arquiteto de Software · Desenvolvedor de Software Sênior</div>
+  <div class="contatos">
+    <span>São Paulo – SP · aberto a remoto</span>
+    <span>(11) 96655-1060</span>
+    guilherme.tgomes@hotmail.com
+    <span>linkedin.com/in/guilherme-txgomes</span>
+    <span>github.com/guilherme-teixeira-gomes</span>
+    <span>guilherme-teixeira-gomes.github.io</span>
+  </div>
+
+  <h2>Resumo</h2>
+  <p class="resumo">
+    Tech Lead e arquiteto de software responsável de ponta a ponta por uma plataforma de Smart City em
+    produção que monitora e comanda <b>14.782 pontos de luz</b> de um município, além de semáforos
+    inteligentes e da operação das equipes de campo.
+    Atuo desde o firmware e a telemetria MQTT até a arquitetura de backend em Node.js/TypeScript com
+    PostgreSQL, filas e processamento assíncrono, os aplicativos React Native usados pelas equipes em campo
+    e o painel web de gestão. Conduzi a migração da plataforma de single-tenant para multi-tenant sem
+    interromper o aplicativo legado em uso diário. Pós-graduando em Arquitetura de Software pela FIAP, com
+    foco em Kubernetes, IaC, observabilidade e arquitetura orientada a eventos.
+  </p>
+
+  <h2>Experiência Profissional</h2>
+
+  <div class="cargo-bloco">
+    <div class="cargo-linha">
+      <span class="cargo-titulo">Tech Lead · Software Engineer</span>
+      <span class="cargo-data">Nov 2024 – Atual</span>
+    </div>
+    <div class="cargo-empresa">Vegalux Iluminações · Smart Cities / IoT</div>
+    <ul>
+      <li>Responsável técnico pela plataforma de gestão de iluminação pública e mobilidade urbana da empresa,
+        com <b>14.782 pontos de luz</b> monitorados em operação diária.</li>
+      <li>Defini e executei a migração da arquitetura para <b>multi-tenant</b> (resolução de tenant por
+        middleware, isolamento por coluna e backfill de dados históricos em produção), viabilizando novos
+        clientes sem quebrar o aplicativo legado usado por equipes de campo.</li>
+      <li>Arquitetei o backend em <b>Node.js, TypeScript, TypeORM e PostgreSQL</b>, separando o caminho
+        síncrono de telemetria do processamento pesado por meio de filas <b>Bull/Redis</b>.</li>
+      <li>Reprojetei a geração de relatórios com <b>Puppeteer</b> em workers assíncronos com processamento
+        em blocos e armazenamento em object storage, eliminando os estouros de tempo limite e de memória
+        que derrubavam a API em intervalos longos de data.</li>
+      <li>Desenvolvi o painel web em <b>React/Vite</b> com mapa operacional Mapbox e carregamento por área
+        visível (bounding box, debounce e limite de zoom), e dois aplicativos <b>React Native/Expo</b>
+        para operação em campo.</li>
+      <li>Projetei o sistema de <b>semáforos inteligentes</b>: firmware Arduino, gateway Python/Flask sobre
+        rede privada Tailscale, broker MQTT e backend em nuvem, com três níveis de prioridade e degradação
+        segura quando a conectividade cai.</li>
+      <li>Elevei a maturidade de engenharia: extração de serviços seguindo <b>Clean Architecture</b>,
+        suíte de testes automatizados, índices de banco, logging estruturado com <b>Pino</b> e análise
+        estática contínua no <b>SonarCloud</b>.</li>
+      <li>Implementei o atendimento ao cidadão via <b>WhatsApp (Twilio)</b>, com geração de protocolo e
+        abertura automática de ordem de serviço para a equipe de campo.</li>
+      <li>Otimizei rotas críticas em produção com índices de banco, revisão de consultas e carregamento
+        por área visível no mapa, eliminando varreduras completas de tabela.</li>
+    </ul>
+  </div>
+
+  <div class="cargo-bloco">
+    <div class="cargo-linha">
+      <span class="cargo-titulo">Tech Lead · Gerente de Projetos</span>
+      <span class="cargo-data">Ago 2023 – Nov 2024</span>
+    </div>
+    <div class="cargo-empresa">DKMA Tecnologia e Marketing</div>
+    <ul>
+      <li>Liderança técnica de <b>12 pessoas</b> e gestão simultânea de <b>10 projetos</b> de clientes.</li>
+      <li>Defini a arquitetura de software e os padrões técnicos adotados pelo time, incluindo revisão de
+        código e critérios de pronto.</li>
+      <li>Conduzi o processo de desenvolvimento em Kanban, com planejamento, priorização e acompanhamento
+        de entregas junto às áreas de negócio (Asana, Trello, Freedcamp, Bitrix).</li>
+      <li>Atuei como ponte técnica entre clientes e time de desenvolvimento no levantamento e refinamento
+        de requisitos.</li>
+    </ul>
+  </div>
+
+  <div class="cargo-bloco">
+    <div class="cargo-linha">
+      <span class="cargo-titulo">Desenvolvedor Full Stack</span>
+      <span class="cargo-data">Fev 2023 – Ago 2023</span>
+    </div>
+    <div class="cargo-empresa">DKMA Tecnologia e Marketing</div>
+    <ul>
+      <li>Desenvolvimento e manutenção de sistemas web em <b>Node.js, React, PHP/CodeIgniter e Docker</b>,
+        com bancos MySQL, MariaDB e PostgreSQL.</li>
+      <li>Construção de APIs REST e integrações entre sistemas de clientes dos setores de saúde,
+        varejo e medicina ocupacional.</li>
+      <li>Produtos atendidos: Amtech Saúde, Manager Shelf, Mevmed Medicina Ocupacional,
+        Inconnet Help Desk e Alfa Instrumentos.</li>
+    </ul>
+  </div>
+
+  <h2>Projetos de Arquitetura em Destaque</h2>
+
+  <div class="proj">
+    <div class="proj-titulo">Plataforma multi-tenant de telemetria de iluminação pública</div>
+    <div class="proj-stack">Node.js · TypeScript · TypeORM · PostgreSQL · MQTT · Bull/Redis · React · React Native · Mapbox</div>
+    <div>Arquitetura orientada a eventos separando telemetria em tempo real de processamento em lote.
+      Multi-tenancy por coluna com resolução em middleware, compatibilidade retroativa garantida para o
+      cliente legado e relatórios em PDF gerados de forma assíncrona.
+      Estudo de caso completo em guilherme-teixeira-gomes.github.io.</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-titulo">Semáforo inteligente com prioridade em camadas</div>
+    <div class="proj-stack">Arduino · MQTT · Python/Flask · Tailscale · Node.js · PostgreSQL</div>
+    <div>Sistema embarcado e distribuído com hierarquia de comando (agenda &gt; comando manual &gt; ciclo de
+      fábrica) desenhada para degradar com segurança em caso de perda de conectividade, sem expor o gateway
+      local à internet pública.</div>
+  </div>
+
+  <div class="proj">
+    <div class="proj-titulo">Tech Challenge FIAP — Fase 3 · plataforma de gestão para restaurantes</div>
+    <div class="proj-stack">AWS Lambda · API Gateway · Terraform · EKS · GitHub Actions · New Relic · React</div>
+    <div>Autenticação serverless com validação de CPF e emissão de JWT, infraestrutura provisionada como
+      código (RDS PostgreSQL e EKS), esteira de CI/CD, logs estruturados com correlation ID e APM.
+      Documentação de arquitetura com ADRs, RFCs e diagramas de entidade-relacionamento.</div>
+  </div>
+
+  <h2>Competências Técnicas</h2>
+  <dl class="skills-grid">
+    <dt>Linguagens</dt>
+    <dd>TypeScript, JavaScript, Python, PHP, SQL, C++ (Arduino)</dd>
+    <dt>Backend</dt>
+    <dd>Node.js, Express, TypeORM, Prisma, Sequelize, API REST, Bull/Redis, MQTT</dd>
+    <dt>Frontend & Mobile</dt>
+    <dd>React, Vite, React Native, Expo, Ant Design, Material UI, Styled Components, Mapbox</dd>
+    <dt>Dados</dt>
+    <dd>PostgreSQL, MySQL, MariaDB, Redis, modelagem e otimização de consultas</dd>
+    <dt>Cloud & DevOps</dt>
+    <dd>AWS (Lambda, API Gateway, RDS, EKS), Docker, Kubernetes, Helm, Terraform, GitHub Actions, Heroku, GCS</dd>
+    <dt>Arquitetura</dt>
+    <dd>Multi-tenancy, arquitetura orientada a eventos, DDD, Clean Architecture, modelo C4, ADRs e RFCs,
+      requisitos não funcionais, gestão de débito técnico</dd>
+    <dt>Observabilidade</dt>
+    <dd>New Relic, Datadog, OpenTelemetry, Prometheus, Grafana, Zabbix, logs estruturados (Pino)</dd>
+    <dt>Qualidade</dt>
+    <dd>Testes unitários, de integração e E2E, TDD, SonarCloud, OWASP Top 10</dd>
+    <dt>Liderança</dt>
+    <dd>Liderança técnica, mentoria, revisão de código, Kanban, comunicação com stakeholders</dd>
+  </dl>
+
+  <h2>Formação Acadêmica</h2>
+
+  <div class="form-item">
+    <div class="t">Pós-graduação em Arquitetura de Software <span style="font-weight:400;color:#7a828c">— em andamento</span></div>
+    <div class="s">FIAP · 2026 – 2027</div>
+    <div class="d">Arquitetura e documentação (DDD, Event Storming, C4, ADRs, RFCs) · Clean Architecture ·
+      Docker, Kubernetes, Helm e EKS · Terraform e GitHub Actions · OpenTelemetry, Prometheus, Grafana,
+      Datadog e New Relic · API Gateway (Kong, Azure APIM) · desenvolvimento serverless com AWS SAM e Lambda ·
+      desenvolvimento seguro (OWASP Top 10).</div>
+  </div>
+
+  <div class="form-item">
+    <div class="t">Tecnólogo em Análise e Desenvolvimento de Sistemas</div>
+    <div class="s">Universidade Cruzeiro do Sul</div>
+  </div>
+
+  <h2>Idiomas</h2>
+  <div><b>Português</b> — nativo &nbsp;·&nbsp; <b>Inglês</b> — intermediário</div>
+
+</div>
+</body>
+</html>
